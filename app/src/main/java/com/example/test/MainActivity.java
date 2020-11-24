@@ -1,6 +1,7 @@
 package com.example.test;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,12 +20,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //文字入力
-        TextView textView = (TextView) findViewById(R.id.test);
-        textView.setText("こんにちは！！");
+        CountDownTimer cdt = new CountDownTimer(10000,100) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                int time = (int)millisUntilFinished / 1000;
+
+                TextView tv = (TextView)findViewById(R.id.test);
+                tv.setText(time);
+            }
+
+            @Override
+            public void onFinish() {
+                finish();
+            }
+        }.start();
     }
 }
-
-//TEST
-//HI!
-//OK!
